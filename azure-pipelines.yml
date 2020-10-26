@@ -1,0 +1,102 @@
+# .NET Core Function App to Windows on Azure
+# Build a .NET Core function app and deploy it to Azure as a Windows function App.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+variables:
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: '2509d9a5-9f39-488b-9855-cf16006128f8'
+
+  # Function app name
+  functionAppName: 'FunctionAppTest244'
+
+  # Agent VM image name
+  vmImageName: 'vs2017-win2016'
+
+  # Working Directory
+  workingDirectory: '$(System.DefaultWorkingDirectory)/Demo.FunctionApp'
+
+  # Tests Working Directory
+  testsWorkingDirectory: '$(System.DefaultWorkingDirectory)/Demo.FunctionApp.Tests'
+
+stages:
+- stage: Build
+  displayName: Build stage
+
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: 'build'
+        projects: |
+          $(workingDirectory)/*.csproj
+        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        arguments: '--logger "trx;LogFileName=TestResults.trx" --logger "nunit;LogFileName=TestResults.xml" --results-directory "./Coverage" /p:CollectCoverage=true /p:CoverletOutput=Coverage\\ /p:CoverletOutputFormat=cobertura /p:Exclude="[nunit.*]*"'
+        publishTestResults: false
+        testRunTitle: 'Test #$(Build.BuildId)'
+        workingDirectory: '$(testsWorkingDirectory)'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'NUnit'
+        testResultsFiles: '$(testsWorkingDirectory)/Coverage/TestResults.xml'
+        searchFolder: '$(testsWorkingDirectory)/Coverage'
+        mergeTestResults: true
+        failTaskOnFailedTests: true
+        testRunTitle: 'Test results for #$(Build.BuildId)'
+
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '$(testsWorkingDirectory)/Coverage/coverage.cobertura.xml'
+        failIfCoverageEmpty: true
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: 'development'
+    pool:
+      vmImage: $(vmImageName)
+
+    strategy:
+      runOnce:
+        deploy:
+
+          steps:
+          - task: AzureFunctionApp@1
+            displayName: 'Azure functions app deploy'
+            inputs:
+              azureSubscription: '$(azureSubscription)'
+              appType: functionApp
+              appName: $(functionAppName)
+              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
