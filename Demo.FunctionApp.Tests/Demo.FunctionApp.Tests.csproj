@@ -22,9 +22,9 @@
     </ItemGroup>
 
     <Target Name="test">
-        <Exec Command='dotnet test --logger "trx;LogFileName=TestResults.trx" --logger "nunit;LogFileName=TestResults.xml" --results-directory ./Coverage /p:CollectCoverage=true /p:CoverletOutput=Coverage\\ /p:CoverletOutputFormat=cobertura /p:Exclude="[nunit.*]*"'/>
-        <Exec Command="dotnet tool install -g dotnet-reportgenerator-globaltool" ContinueOnError="true"/>
-        <Exec Command='reportgenerator "-reports:./Coverage/coverage.cobertura.xml" "-targetdir:Coverage" -reporttypes:Html'/>
+        <Exec Command="dotnet test --logger &quot;trx;LogFileName=TestResults.trx&quot; --logger &quot;nunit;LogFileName=TestResults.xml&quot; --results-directory ./Coverage /p:CollectCoverage=true /p:CoverletOutput=Coverage\\ /p:CoverletOutputFormat=cobertura /p:Exclude=&quot;[nunit.*]*&quot;" />
+        <Exec Command="dotnet tool install -g dotnet-reportgenerator-globaltool" ContinueOnError="true" />
+        <Exec Command="reportgenerator &quot;-reports:./Coverage/coverage.cobertura.xml&quot; &quot;-targetdir:Coverage&quot; -reporttypes:Html" />
     </Target>
 
 </Project>
