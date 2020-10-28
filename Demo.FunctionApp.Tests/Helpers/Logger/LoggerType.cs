@@ -1,4 +1,4 @@
-﻿﻿namespace Demo.FunctionApp.Tests.Helpers.Loggers
+﻿namespace Demo.FunctionApp.Tests.Helpers.Logger
 {
     public enum LoggerType
     {

@@ -1,6 +1,6 @@
-﻿﻿using System;
+﻿using System;
 
- namespace Demo.FunctionApp.Tests.Helpers.Loggers
+namespace Demo.FunctionApp.Tests.Helpers.Logger
 {
     public class NullScope : IDisposable
     {

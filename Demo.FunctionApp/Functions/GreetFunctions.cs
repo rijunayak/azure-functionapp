@@ -1,28 +1,28 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Net;
+using AzureFunctions.Extensions.Swashbuckle.Attribute;
+using Demo.FunctionApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Demo.FunctionApp.Functions
 {
+    [ApiExplorerSettings(GroupName = "Greet APIs")]
     public static class GreetFunctions
     {
+        [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int) HttpStatusCode.OK)]
         [FunctionName("greet")]
-        public static async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]
+        [QueryStringParameter("name", "The name to greet", DataType = typeof(string), Required = true)]
+        public static IActionResult Greet(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]
             HttpRequest req, ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
-
-            var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name ??= data?.name;
 
             return name != null
                 ? (ActionResult) new OkObjectResult($"Hello, {name}!")

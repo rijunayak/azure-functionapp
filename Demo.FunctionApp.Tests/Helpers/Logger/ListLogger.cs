@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace Demo.FunctionApp.Tests.Helpers.Loggers
+namespace Demo.FunctionApp.Tests.Helpers.Logger
 {
     public class ListLogger : ILogger
     {

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FunctionApp", "Demo.FunctionApp\Demo.FunctionApp.csproj", "{D4A56404-3B0B-48CE-ABAF-D81617B35063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FunctionApp.Tests", "Demo.FunctionApp.Tests\Demo.FunctionApp.Tests.csproj", "{8F0DD876-E84B-4131-B4FE-98382AC6B408}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FunctionApp.Tests", "Demo.FunctionApp.Tests\Demo.FunctionApp.Tests.csproj", "{11856B71-C1C0-492D-9F80-11BE2A10E792}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{D4A56404-3B0B-48CE-ABAF-D81617B35063}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4A56404-3B0B-48CE-ABAF-D81617B35063}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4A56404-3B0B-48CE-ABAF-D81617B35063}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F0DD876-E84B-4131-B4FE-98382AC6B408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F0DD876-E84B-4131-B4FE-98382AC6B408}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F0DD876-E84B-4131-B4FE-98382AC6B408}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F0DD876-E84B-4131-B4FE-98382AC6B408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11856B71-C1C0-492D-9F80-11BE2A10E792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11856B71-C1C0-492D-9F80-11BE2A10E792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11856B71-C1C0-492D-9F80-11BE2A10E792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11856B71-C1C0-492D-9F80-11BE2A10E792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

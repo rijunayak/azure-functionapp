@@ -14,11 +14,11 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="NunitXml.TestLogger" Version="2.1.62"/>
+        <PackageReference Include="NunitXml.TestLogger" Version="2.1.62" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Demo.FunctionApp\Demo.FunctionApp.csproj" />
+        <ProjectReference Include="..\Demo.FunctionApp\Demo.FunctionApp.csproj" />
     </ItemGroup>
 
     <Target Name="test">

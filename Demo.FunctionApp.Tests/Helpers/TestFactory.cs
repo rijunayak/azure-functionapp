@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Demo.FunctionApp.Tests.Helpers.Loggers;
+using Demo.FunctionApp.Tests.Helpers.Logger;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Primitives;
