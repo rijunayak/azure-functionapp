@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using AzureFunctions.Extensions.Swashbuckle;
 using AzureFunctions.Extensions.Swashbuckle.Settings;
@@ -49,8 +48,14 @@ namespace Demo.FunctionApp
         {
             var appEnv = Environment.GetEnvironmentVariable("APP_ENV");
 
+            var isLocal = appEnv == null || appEnv.Equals("local", StringComparison.OrdinalIgnoreCase);
+
+            var appDirectory = isLocal
+                ? Environment.CurrentDirectory
+                : $"{Environment.GetEnvironmentVariable("SITE_FOLDER")}/site/wwwroot";
+
             var config = new ConfigurationBuilder()
-                .SetBasePath($"{Directory.GetCurrentDirectory()}/ConfigFiles")
+                .SetBasePath($"{appDirectory}/ConfigFiles")
                 .AddJsonFile("appsettings.json", true)
                 .AddJsonFile($"appsettings.{appEnv}.json", true)
                 .AddEnvironmentVariables()

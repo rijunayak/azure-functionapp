@@ -5,9 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7"/>
-        <PackageReference Include="AzureExtensions.Swashbuckle" Version="3.2.2"/>
-        <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0"/>
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
+        <PackageReference Include="AzureExtensions.Swashbuckle" Version="3.2.2" />
+        <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,16 +19,17 @@
             <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.local.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.qa.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
     </ItemGroup>
+
 </Project>
