@@ -5,7 +5,7 @@ using AzureFunctions.Extensions.Swashbuckle.Attribute;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
-namespace Demo.FunctionApp.SwashBuckle
+namespace Demo.FunctionApp.Swagger
 {
     public static class SwaggerController
     {
