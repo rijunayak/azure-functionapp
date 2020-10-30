@@ -19,15 +19,16 @@
             <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.local.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
         <None Update="ConfigFiles/appsettings.qa.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
     </ItemGroup>
 </Project>
