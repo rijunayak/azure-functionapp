@@ -4,6 +4,7 @@ using AzureFunctions.Extensions.Swashbuckle;
 using AzureFunctions.Extensions.Swashbuckle.Settings;
 using Demo.FunctionApp;
 using Demo.FunctionApp.Config;
+using Demo.FunctionApp.Greet;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -74,6 +75,9 @@ namespace Demo.FunctionApp
                 secrets.Initialize();
                 return secrets;
             });
+
+            builder.Services.AddSingleton<IGreetService, GreetService>();
+            builder.Services.AddSingleton<IGreetRepository, GreetRepository>();
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Demo.FunctionApp.Tests.Helpers.Logger
 {
-    public class ListLogger : ILogger
+    public class ListLogger<T> : ILogger<T>
     {
         public readonly IList<string> Logs;
 

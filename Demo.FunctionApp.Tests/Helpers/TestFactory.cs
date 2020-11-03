@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using Demo.FunctionApp.Tests.Helpers.Logger;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Primitives;
 
 namespace Demo.FunctionApp.Tests.Helpers
@@ -25,13 +22,6 @@ namespace Demo.FunctionApp.Tests.Helpers
             var request = context.Request;
             request.Query = new QueryCollection(CreateDictionary(queryStringKey, queryStringValue));
             return request;
-        }
-
-        public static ILogger CreateLogger(LoggerType type = LoggerType.Null)
-        {
-            return type == LoggerType.List
-                ? new ListLogger()
-                : NullLoggerFactory.Instance.CreateLogger("Null Logger");
         }
 
         private static Dictionary<string, StringValues> CreateDictionary(string key, string value)

@@ -1,26 +1,24 @@
 ﻿using System.Net;
 using AzureFunctions.Extensions.Swashbuckle.Attribute;
-using Demo.FunctionApp.Config;
 using Demo.FunctionApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace Demo.FunctionApp.Functions
+namespace Demo.FunctionApp.Greet
 {
     [ApiExplorerSettings(GroupName = "Greet APIs")]
     public class GreetFunctions
     {
-        private readonly ISecrets secrets;
-        private readonly GreetingsConfig greetingsConfig;
+        private readonly IGreetService greetService;
+        private readonly ILogger<GreetFunctions> log;
 
-        public GreetFunctions(IOptions<GreetingsConfig> greetingsConfig, ISecrets secrets)
+        public GreetFunctions(IGreetService greetService, ILogger<GreetFunctions> log)
         {
-            this.secrets = secrets;
-            this.greetingsConfig = greetingsConfig.Value;
+            this.greetService = greetService;
+            this.log = log;
         }
 
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.BadRequest)]
@@ -29,15 +27,14 @@ namespace Demo.FunctionApp.Functions
         [QueryStringParameter("name", "The name to greet", DataType = typeof(string), Required = true)]
         public IActionResult Greet(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]
-            HttpRequest req, ILogger log)
+            HttpRequest req)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
 
             return name != null
-                ? (ActionResult) new OkObjectResult(
-                    $"{greetingsConfig.GreetPrefix}, {name}! Secret - {secrets.MySecret}! {greetingsConfig.GreetSuffix}")
+                ? (ActionResult) new OkObjectResult(greetService.Greet(name))
                 : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
         }
     }
