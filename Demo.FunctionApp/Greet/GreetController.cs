@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using AzureFunctions.Extensions.Swashbuckle.Attribute;
-using Demo.FunctionApp.Models;
+using Demo.FunctionApp.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

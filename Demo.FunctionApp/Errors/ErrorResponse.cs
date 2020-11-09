@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Demo.FunctionApp.Models
+namespace Demo.FunctionApp.Errors
 {
     public class ErrorResponse
     {

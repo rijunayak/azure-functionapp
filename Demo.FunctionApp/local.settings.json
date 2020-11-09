@@ -5,5 +5,8 @@
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
         "MY_SECRET": "I don't like rainbows",
         "APP_ENV": "local"
+    },
+    "ConnectionStrings": {
+        "School": "Server=127.0.0.1;Port=5432;Database=school;User Id=school;Password=postgres;"
     }
 }

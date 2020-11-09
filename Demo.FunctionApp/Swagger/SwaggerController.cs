@@ -12,7 +12,7 @@ namespace Demo.FunctionApp.Swagger
         [SwaggerIgnore]
         [FunctionName("Swagger")]
         public static Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Swagger/json")]
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "swagger/json")]
             HttpRequestMessage req, [SwashBuckleClient] ISwashBuckleClient swashBuckleClient)
         {
             return Task.FromResult(swashBuckleClient.CreateSwaggerDocumentResponse(req));
@@ -21,7 +21,7 @@ namespace Demo.FunctionApp.Swagger
         [SwaggerIgnore]
         [FunctionName("SwaggerUi")]
         public static Task<HttpResponseMessage> Run2(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Swagger/ui")]
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "swagger/ui")]
             HttpRequestMessage req, [SwashBuckleClient] ISwashBuckleClient swashBuckleClient)
         {
             return Task.FromResult(swashBuckleClient.CreateSwaggerUIResponse(req, "swagger/json"));
